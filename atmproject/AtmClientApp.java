@@ -7,7 +7,6 @@ public class AtmClientApp {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		
 
 		Atm account = new Atm("1234", 100);
 		System.out.println("welcome, please enter your pin");
@@ -22,8 +21,7 @@ public class AtmClientApp {
 			System.out.println(
 					"\nWhat would you like to do:\n1: Deposit Funds\n2: Withdraw Funds\n3: Check Balance\n4: Exit");
 			String opt1 = input.next();
-			
-				
+
 			if (opt1.equals("1")) {
 				System.out.println("Enter a deposit amount");
 				double depositAmount = input.nextDouble();
@@ -32,20 +30,18 @@ public class AtmClientApp {
 			}
 			if (opt1.equals("2")) {
 				double withdrawAmount = 0;
-				try {System.out.println("Please enter an amount to withdraw: ");				
+				System.out.println("Please enter an amount to withdraw: ");
 				withdrawAmount = input.nextDouble();
-				}catch(InputMismatchException e) {
-					System.out.println("Invalid Input. Please try again");
-				}
+
 				while (withdrawAmount > account.getBalance()) {
 					System.out.println("Sorry, Please try again");
 					withdrawAmount = input.nextDouble();
-					}
-				account.makeWithdraw(withdrawAmount);		
+				}
+				account.makeWithdraw(withdrawAmount);
 				System.out.println("Thank you, your new balance is: $" + account.getBalance());
-			
+
 			}
-			
+
 			if (opt1.equals("3")) {
 				System.out.println("Your current balance is: $" + account.getBalance());
 			}
