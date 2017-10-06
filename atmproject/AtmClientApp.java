@@ -1,11 +1,13 @@
 package atmproject;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AtmClientApp {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
+		
 
 		Atm account = new Atm("1234", 100);
 		System.out.println("welcome, please enter your pin");
@@ -29,8 +31,12 @@ public class AtmClientApp {
 				System.out.println("Thanks for your deposit! Your new balance is: $" + account.getBalance());
 			}
 			if (opt1.equals("2")) {
-				System.out.println("Please enter an amount to withdraw: ");				
-				double withdrawAmount = input.nextDouble();
+				double withdrawAmount = 0;
+				try {System.out.println("Please enter an amount to withdraw: ");				
+				withdrawAmount = input.nextDouble();
+				}catch(InputMismatchException e) {
+					System.out.println("Invalid Input. Please try again");
+				}
 				while (withdrawAmount > account.getBalance()) {
 					System.out.println("Sorry, Please try again");
 					withdrawAmount = input.nextDouble();
